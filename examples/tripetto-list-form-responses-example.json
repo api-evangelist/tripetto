@@ -1,0 +1,45 @@
+{
+  "operation": "listFormResponses",
+  "request": {
+    "method": "GET",
+    "url": "https://tripetto.com/app/api/forms/frm_abc123/responses?page=1&limit=10",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_TOKEN",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "rsp_xyz789",
+          "formId": "frm_abc123",
+          "fields": [
+            {
+              "id": "node_001",
+              "name": "Overall satisfaction",
+              "type": "number",
+              "value": 4
+            },
+            {
+              "id": "node_002",
+              "name": "Would you recommend us?",
+              "type": "string",
+              "value": "Yes"
+            },
+            {
+              "id": "node_003",
+              "name": "Additional comments",
+              "type": "string",
+              "value": "Great service, fast delivery!"
+            }
+          ],
+          "submittedAt": "2026-04-28T16:05:32Z",
+          "fingerprint": "a1b2c3d4e5f6"
+        }
+      ],
+      "total": 342
+    }
+  }
+}

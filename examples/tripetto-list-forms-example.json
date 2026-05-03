@@ -1,0 +1,36 @@
+{
+  "operation": "listForms",
+  "request": {
+    "method": "GET",
+    "url": "https://tripetto.com/app/api/forms?page=1&limit=20",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_TOKEN",
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "frm_abc123",
+          "name": "Customer Satisfaction Survey",
+          "description": "Post-purchase satisfaction survey for e-commerce customers",
+          "created": "2026-01-15T10:30:00Z",
+          "modified": "2026-03-01T14:22:00Z",
+          "responseCount": 342
+        },
+        {
+          "id": "frm_def456",
+          "name": "Employee Onboarding Form",
+          "description": "New hire information collection form",
+          "created": "2026-02-01T09:00:00Z",
+          "modified": "2026-04-10T11:45:00Z",
+          "responseCount": 28
+        }
+      ],
+      "total": 2,
+      "page": 1
+    }
+  }
+}

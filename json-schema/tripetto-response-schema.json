@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api-evangelist.github.io/tripetto/json-schema/tripetto-response-schema.json",
+  "title": "Tripetto Form Response",
+  "description": "Schema for a collected Tripetto form response with field values",
+  "type": "object",
+  "required": ["id", "formId", "fields", "submittedAt"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique response identifier"
+    },
+    "formId": {
+      "type": "string",
+      "description": "Identifier of the parent form"
+    },
+    "fields": {
+      "type": "array",
+      "description": "Answered fields with their submitted values",
+      "items": {
+        "$ref": "#/definitions/ResponseField"
+      }
+    },
+    "submittedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the form response was submitted"
+    },
+    "fingerprint": {
+      "type": "string",
+      "description": "Anonymized respondent fingerprint for deduplication"
+    }
+  },
+  "definitions": {
+    "ResponseField": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Field/node identifier matching form definition"
+        },
+        "name": {
+          "type": "string",
+          "description": "Field label"
+        },
+        "value": {
+          "description": "Submitted value (string, number, boolean, or array depending on block type)"
+        },
+        "type": {
+          "type": "string",
+          "description": "Data type of the response value",
+          "enum": ["string", "number", "boolean", "array", "object"]
+        }
+      }
+    }
+  }
+}

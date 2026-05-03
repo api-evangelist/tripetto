@@ -1,0 +1,139 @@
+vocabulary:
+  name: Tripetto Vocabulary
+  description: >-
+    Domain vocabulary for the Tripetto form builder platform covering form building,
+    survey logic, response collection, and webhook integration concepts.
+  version: 1.0.0
+  created: '2026-05-03'
+  modified: '2026-05-03'
+  tags:
+    - Forms
+    - Surveys
+    - Form Builder
+    - Webhooks
+
+terms:
+  - term: Form
+    definition: >-
+      A structured collection of questions and blocks created in the Tripetto Builder,
+      defined as a JSON document consumed by Runners to present to respondents.
+    category: Core Concept
+    tags:
+      - Forms
+      - Core
+
+  - term: Form Definition
+    definition: >-
+      The JSON structure output by the Tripetto Builder that describes all nodes,
+      sections, conditions, and logic for a form.
+    category: Core Concept
+    tags:
+      - Forms
+      - Core
+
+  - term: Node
+    definition: >-
+      A single question or interactive block within a form definition. Each node
+      has a type (e.g., text, email, yes-no, dropdown) and configurable settings.
+    category: Form Component
+    tags:
+      - Forms
+      - Blocks
+
+  - term: Block
+    definition: >-
+      A reusable question type plugin in the Tripetto ecosystem. Stock blocks include
+      text, email, number, yes/no, dropdown, multiple-choice, date, rating, and more.
+    category: Form Component
+    tags:
+      - Forms
+      - Blocks
+
+  - term: Runner
+    definition: >-
+      A JavaScript component that takes a form definition and renders it as an interactive
+      form UI. Available in autoscroll, classic, and chat variants.
+    category: SDK Component
+    tags:
+      - SDK
+      - Forms
+
+  - term: Builder
+    definition: >-
+      The visual form design component in the Tripetto SDK that allows creation of
+      form definitions through a graphical flowchart interface.
+    category: SDK Component
+    tags:
+      - SDK
+      - Form Builder
+
+  - term: Section
+    definition: >-
+      A grouping mechanism within a form definition that organizes related nodes
+      together for logical and visual organization.
+    category: Form Component
+    tags:
+      - Forms
+
+  - term: Condition
+    definition: >-
+      A conditional logic rule within a form definition that controls branching
+      and which nodes are shown based on previous answers.
+    category: Logic
+    tags:
+      - Logic
+      - Conditions
+
+  - term: Response
+    definition: >-
+      A completed form submission containing the values provided by a respondent
+      for each answered field.
+    category: Data
+    tags:
+      - Responses
+      - Data
+
+  - term: Webhook
+    definition: >-
+      An HTTP POST endpoint configured to receive form response payloads automatically
+      when a respondent submits a form, enabling integrations with external services.
+    category: Integration
+    tags:
+      - Webhooks
+      - Integrations
+
+  - term: Fingerprint
+    definition: >-
+      An anonymized identifier associated with a form response used to detect
+      duplicate or repeat submissions without storing personal data.
+    category: Privacy
+    tags:
+      - Privacy
+      - GDPR
+
+  - term: Autoscroll
+    definition: >-
+      A stock runner UI face that automatically scrolls to the next question as
+      the respondent answers, creating a smooth conversational form experience.
+    category: UI
+    tags:
+      - UI
+      - Runner
+
+  - term: Chat Interface
+    definition: >-
+      A stock runner UI face that presents form questions in a messaging chat
+      conversation style, making forms feel like a dialogue.
+    category: UI
+    tags:
+      - UI
+      - Runner
+
+  - term: Raw Response Data
+    definition: >-
+      An optional webhook payload format that sends the full nested response
+      data structure rather than a flat simplified representation.
+    category: Integration
+    tags:
+      - Webhooks
+      - Data

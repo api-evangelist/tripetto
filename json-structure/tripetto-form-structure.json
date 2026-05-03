@@ -1,0 +1,62 @@
+{
+  "title": "Tripetto Form Structure",
+  "description": "JSON structure documentation for Tripetto form and response objects",
+  "version": "1.0.0",
+  "structures": [
+    {
+      "name": "Form",
+      "description": "A Tripetto form with its builder definition and metadata",
+      "fields": [
+        { "name": "id", "type": "string", "required": true, "description": "Unique form identifier" },
+        { "name": "name", "type": "string", "required": true, "description": "Form name" },
+        { "name": "description", "type": "string", "required": false, "description": "Form description" },
+        { "name": "definition", "type": "object", "required": true, "description": "FormDefinition JSON" },
+        { "name": "created", "type": "date-time", "required": false, "description": "Creation timestamp" },
+        { "name": "modified", "type": "date-time", "required": false, "description": "Last modified timestamp" },
+        { "name": "responseCount", "type": "integer", "required": false, "description": "Total responses collected" }
+      ]
+    },
+    {
+      "name": "FormDefinition",
+      "description": "JSON definition produced by the Tripetto Builder",
+      "fields": [
+        { "name": "nodes", "type": "array[FormNode]", "required": false, "description": "Form question nodes" },
+        { "name": "sections", "type": "array[FormSection]", "required": false, "description": "Grouped sections" },
+        { "name": "conditions", "type": "array[object]", "required": false, "description": "Conditional logic rules" }
+      ]
+    },
+    {
+      "name": "FormNode",
+      "description": "A single question or block within a form",
+      "fields": [
+        { "name": "id", "type": "string", "required": true, "description": "Node identifier" },
+        { "name": "type", "type": "string", "required": true, "description": "Block type (text, email, yes-no, etc.)" },
+        { "name": "name", "type": "string", "required": false, "description": "Question label" },
+        { "name": "required", "type": "boolean", "required": false, "description": "Whether response is required" },
+        { "name": "settings", "type": "object", "required": false, "description": "Block-specific settings" }
+      ]
+    },
+    {
+      "name": "FormResponse",
+      "description": "A submitted form response with field values",
+      "fields": [
+        { "name": "id", "type": "string", "required": true, "description": "Response identifier" },
+        { "name": "formId", "type": "string", "required": true, "description": "Parent form identifier" },
+        { "name": "fields", "type": "array[ResponseField]", "required": true, "description": "Answered fields" },
+        { "name": "submittedAt", "type": "date-time", "required": true, "description": "Submission timestamp" },
+        { "name": "fingerprint", "type": "string", "required": false, "description": "Respondent fingerprint" }
+      ]
+    },
+    {
+      "name": "Webhook",
+      "description": "Outbound webhook configuration for form response delivery",
+      "fields": [
+        { "name": "id", "type": "string", "required": true, "description": "Webhook identifier" },
+        { "name": "url", "type": "string (uri)", "required": true, "description": "Destination URL" },
+        { "name": "sendRawData", "type": "boolean", "required": false, "description": "Send raw nested payload" },
+        { "name": "enabled", "type": "boolean", "required": false, "description": "Whether webhook is active" },
+        { "name": "created", "type": "date-time", "required": false, "description": "Creation timestamp" }
+      ]
+    }
+  ]
+}

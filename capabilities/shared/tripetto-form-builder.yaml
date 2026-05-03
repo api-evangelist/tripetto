@@ -1,0 +1,271 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Tripetto FormBuilder SDK API"
+  description: >-
+    Shared capability definition for the Tripetto FormBuilder SDK API covering form
+    management, response collection, and webhook configuration.
+  tags:
+    - Forms
+    - Surveys
+    - Form Builder
+    - Webhooks
+    - No-Code
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TRIPETTO_API_TOKEN: TRIPETTO_API_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: tripetto
+      baseUri: https://tripetto.com
+      description: "Tripetto FormBuilder API for managing forms, responses, and webhooks"
+      authentication:
+        type: bearer
+        token: "{{TRIPETTO_API_TOKEN}}"
+      resources:
+        - name: forms
+          path: /app/api/forms
+          description: "Create and manage form definitions"
+          operations:
+            - name: list-forms
+              method: GET
+              description: "Retrieve a list of forms in the account"
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number for pagination"
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of forms per page"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-form
+              method: POST
+              description: "Create a new form with a definition"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  description: "{{tools.description}}"
+                  definition: "{{tools.definition}}"
+
+        - name: form-by-id
+          path: /app/api/forms/{formId}
+          description: "Manage a specific form by ID"
+          operations:
+            - name: get-form
+              method: GET
+              description: "Retrieve a specific form by its ID"
+              inputParameters:
+                - name: formId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the form"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-form
+              method: PUT
+              description: "Update an existing form definition"
+              inputParameters:
+                - name: formId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the form"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  definition: "{{tools.definition}}"
+            - name: delete-form
+              method: DELETE
+              description: "Delete a form and all its responses"
+              inputParameters:
+                - name: formId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the form"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: form-responses
+          path: /app/api/forms/{formId}/responses
+          description: "Access form response data"
+          operations:
+            - name: list-form-responses
+              method: GET
+              description: "Retrieve all responses submitted for a specific form"
+              inputParameters:
+                - name: formId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the form"
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number for pagination"
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of responses per page"
+                - name: from
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter responses from this ISO 8601 date"
+                - name: to
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter responses to this ISO 8601 date"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: form-webhooks
+          path: /app/api/forms/{formId}/webhooks
+          description: "Manage webhooks for a form"
+          operations:
+            - name: list-form-webhooks
+              method: GET
+              description: "List all configured webhooks for a form"
+              inputParameters:
+                - name: formId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the form"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-form-webhook
+              method: POST
+              description: "Configure a webhook to receive form responses"
+              inputParameters:
+                - name: formId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the form"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  url: "{{tools.url}}"
+                  sendRawData: "{{tools.send_raw_data}}"
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: tripetto-rest
+      resources:
+        - path: /v1/forms
+          name: forms
+          description: "Manage Tripetto forms"
+          operations:
+            - method: GET
+              name: list-forms
+              description: "List all forms"
+              call: "tripetto.list-forms"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-form
+              description: "Create a new form"
+              call: "tripetto.create-form"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/forms/{formId}
+          name: form
+          description: "Manage a specific form"
+          operations:
+            - method: GET
+              name: get-form
+              description: "Get form by ID"
+              call: "tripetto.get-form"
+              with:
+                formId: "rest.formId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: tripetto-mcp
+      transport: http
+      tools:
+        - name: list-forms
+          description: "List all Tripetto forms"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tripetto.list-forms"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-form
+          description: "Get a specific form by ID"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tripetto.get-form"
+          with:
+            formId: "tools.formId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-form-responses
+          description: "List responses submitted for a form"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tripetto.list-form-responses"
+          with:
+            formId: "tools.formId"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,78 @@
+extends: spectral:oas
+rules:
+  # Tripetto API Convention Rules
+
+  tripetto-operation-id-format:
+    description: Operation IDs must use camelCase
+    message: "Operation ID '{{value}}' must use camelCase (e.g. listForms, createForm)"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  tripetto-require-tags:
+    description: All operations must have at least one tag
+    message: Operations must be tagged for grouping (Forms, Responses, Webhooks)
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  tripetto-response-200-has-content:
+    description: 200 responses must have a content body
+    message: Successful responses should return content
+    severity: warn
+    given: "$.paths[*][*].responses['200']"
+    then:
+      field: content
+      function: truthy
+
+  tripetto-require-description:
+    description: All operations must have a description
+    message: Operations must have a description explaining their purpose
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: description
+      function: truthy
+
+  tripetto-path-kebab-case:
+    description: Path segments must use kebab-case
+    message: "Path '{{value}}' must use kebab-case for all segments"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9{}-]+)+$"
+
+  tripetto-no-trailing-slash:
+    description: Paths must not have trailing slashes
+    message: "Path '{{value}}' must not end with a trailing slash"
+    severity: error
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/$"
+
+  tripetto-bearer-auth-defined:
+    description: API must define Bearer authentication scheme
+    message: Security scheme BearerAuth must be defined in components
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      field: BearerAuth
+      function: truthy
+
+  tripetto-schema-properties-have-description:
+    description: Schema properties should have descriptions
+    message: "Property '{{path}}' is missing a description"
+    severity: info
+    given: "$.components.schemas[*].properties[*]"
+    then:
+      field: description
+      function: truthy
