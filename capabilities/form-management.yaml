@@ -1,245 +1,397 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Tripetto Form Management"
-  description: >-
-    Workflow capability for building, deploying, and collecting responses from
-    Tripetto smart forms and surveys. Enables form lifecycle management including
-    creation, updates, response retrieval, and webhook configuration for automation
+  label: Tripetto Form Management
+  description: Workflow capability for building, deploying, and collecting responses from Tripetto smart forms and surveys.
+    Enables form lifecycle management including creation, updates, response retrieval, and webhook configuration for automation
     platform integrations.
   tags:
-    - Forms
-    - Surveys
-    - Form Builder
-    - Webhooks
-    - Automation
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - Forms
+  - Surveys
+  - Form Builder
+  - Webhooks
+  - Automation
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      TRIPETTO_API_TOKEN: TRIPETTO_API_TOKEN
-
+- namespace: env
+  keys:
+    TRIPETTO_API_TOKEN: TRIPETTO_API_TOKEN
 capability:
   consumes:
-    - import: tripetto
-      location: ./shared/tripetto-form-builder.yaml
-
+  - type: http
+    namespace: tripetto
+    baseUri: https://tripetto.com
+    description: Tripetto FormBuilder API for managing forms, responses, and webhooks
+    authentication:
+      type: bearer
+      token: '{{TRIPETTO_API_TOKEN}}'
+    resources:
+    - name: forms
+      path: /app/api/forms
+      description: Create and manage form definitions
+      operations:
+      - name: list-forms
+        method: GET
+        description: Retrieve a list of forms in the account
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Page number for pagination
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Number of forms per page
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-form
+        method: POST
+        description: Create a new form with a definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            description: '{{tools.description}}'
+            definition: '{{tools.definition}}'
+    - name: form-by-id
+      path: /app/api/forms/{formId}
+      description: Manage a specific form by ID
+      operations:
+      - name: get-form
+        method: GET
+        description: Retrieve a specific form by its ID
+        inputParameters:
+        - name: formId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-form
+        method: PUT
+        description: Update an existing form definition
+        inputParameters:
+        - name: formId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            definition: '{{tools.definition}}'
+      - name: delete-form
+        method: DELETE
+        description: Delete a form and all its responses
+        inputParameters:
+        - name: formId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: form-responses
+      path: /app/api/forms/{formId}/responses
+      description: Access form response data
+      operations:
+      - name: list-form-responses
+        method: GET
+        description: Retrieve all responses submitted for a specific form
+        inputParameters:
+        - name: formId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the form
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Page number for pagination
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Number of responses per page
+        - name: from
+          in: query
+          type: string
+          required: false
+          description: Filter responses from this ISO 8601 date
+        - name: to
+          in: query
+          type: string
+          required: false
+          description: Filter responses to this ISO 8601 date
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: form-webhooks
+      path: /app/api/forms/{formId}/webhooks
+      description: Manage webhooks for a form
+      operations:
+      - name: list-form-webhooks
+        method: GET
+        description: List all configured webhooks for a form
+        inputParameters:
+        - name: formId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-form-webhook
+        method: POST
+        description: Configure a webhook to receive form responses
+        inputParameters:
+        - name: formId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            url: '{{tools.url}}'
+            sendRawData: '{{tools.send_raw_data}}'
   exposes:
-    - type: rest
-      port: 8080
-      namespace: tripetto-form-management-api
-      description: "Unified REST API for Tripetto form lifecycle management."
-      resources:
-        - path: /v1/forms
-          name: forms
-          description: "Create and list Tripetto forms"
-          operations:
-            - method: GET
-              name: list-forms
-              description: "List all forms in the Tripetto account"
-              call: "tripetto.list-forms"
-              with:
-                page: "rest.page"
-                limit: "rest.limit"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-form
-              description: "Create a new smart form with a JSON definition"
-              call: "tripetto.create-form"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/forms/{formId}
-          name: form
-          description: "Manage a specific form"
-          operations:
-            - method: GET
-              name: get-form
-              description: "Retrieve a specific form by ID"
-              call: "tripetto.get-form"
-              with:
-                formId: "rest.formId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: PUT
-              name: update-form
-              description: "Update form name or definition"
-              call: "tripetto.update-form"
-              with:
-                formId: "rest.formId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: DELETE
-              name: delete-form
-              description: "Delete a form and all responses"
-              call: "tripetto.delete-form"
-              with:
-                formId: "rest.formId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/forms/{formId}/responses
-          name: form-responses
-          description: "Access collected form responses"
-          operations:
-            - method: GET
-              name: list-form-responses
-              description: "List all responses for a specific form"
-              call: "tripetto.list-form-responses"
-              with:
-                formId: "rest.formId"
-                page: "rest.page"
-                limit: "rest.limit"
-                from: "rest.from"
-                to: "rest.to"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/forms/{formId}/webhooks
-          name: form-webhooks
-          description: "Manage webhook integrations for a form"
-          operations:
-            - method: GET
-              name: list-form-webhooks
-              description: "List all configured webhooks for a form"
-              call: "tripetto.list-form-webhooks"
-              with:
-                formId: "rest.formId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-form-webhook
-              description: "Add a webhook endpoint to receive form responses"
-              call: "tripetto.create-form-webhook"
-              with:
-                formId: "rest.formId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: tripetto-form-management-mcp
-      transport: http
-      description: "MCP server for AI-assisted form building and survey data collection."
-      tools:
-        - name: list-forms
-          description: "List all Tripetto forms in the account"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "tripetto.list-forms"
-          with:
-            page: "tools.page"
-            limit: "tools.limit"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-form
-          description: "Retrieve a specific form definition by ID"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "tripetto.get-form"
-          with:
-            formId: "tools.formId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: create-form
-          description: "Create a new smart form with conditional logic"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "tripetto.create-form"
-          with:
-            name: "tools.name"
-            description: "tools.description"
-            definition: "tools.definition"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: update-form
-          description: "Update an existing form definition"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "tripetto.update-form"
-          with:
-            formId: "tools.formId"
-            name: "tools.name"
-            definition: "tools.definition"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: delete-form
-          description: "Delete a form and all its collected responses"
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "tripetto.delete-form"
-          with:
-            formId: "tools.formId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-form-responses
-          description: "List responses collected for a specific form"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "tripetto.list-form-responses"
-          with:
-            formId: "tools.formId"
-            page: "tools.page"
-            limit: "tools.limit"
-            from: "tools.from"
-            to: "tools.to"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-form-webhooks
-          description: "List webhook integrations configured for a form"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "tripetto.list-form-webhooks"
-          with:
-            formId: "tools.formId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: create-form-webhook
-          description: "Add a webhook endpoint to deliver form responses to external services"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "tripetto.create-form-webhook"
-          with:
-            formId: "tools.formId"
-            url: "tools.url"
-            sendRawData: "tools.send_raw_data"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: tripetto-form-management-api
+    description: Unified REST API for Tripetto form lifecycle management.
+    resources:
+    - path: /v1/forms
+      name: forms
+      description: Create and list Tripetto forms
+      operations:
+      - method: GET
+        name: list-forms
+        description: List all forms in the Tripetto account
+        call: tripetto.list-forms
+        with:
+          page: rest.page
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-form
+        description: Create a new smart form with a JSON definition
+        call: tripetto.create-form
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/forms/{formId}
+      name: form
+      description: Manage a specific form
+      operations:
+      - method: GET
+        name: get-form
+        description: Retrieve a specific form by ID
+        call: tripetto.get-form
+        with:
+          formId: rest.formId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: update-form
+        description: Update form name or definition
+        call: tripetto.update-form
+        with:
+          formId: rest.formId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-form
+        description: Delete a form and all responses
+        call: tripetto.delete-form
+        with:
+          formId: rest.formId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/forms/{formId}/responses
+      name: form-responses
+      description: Access collected form responses
+      operations:
+      - method: GET
+        name: list-form-responses
+        description: List all responses for a specific form
+        call: tripetto.list-form-responses
+        with:
+          formId: rest.formId
+          page: rest.page
+          limit: rest.limit
+          from: rest.from
+          to: rest.to
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/forms/{formId}/webhooks
+      name: form-webhooks
+      description: Manage webhook integrations for a form
+      operations:
+      - method: GET
+        name: list-form-webhooks
+        description: List all configured webhooks for a form
+        call: tripetto.list-form-webhooks
+        with:
+          formId: rest.formId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-form-webhook
+        description: Add a webhook endpoint to receive form responses
+        call: tripetto.create-form-webhook
+        with:
+          formId: rest.formId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: tripetto-form-management-mcp
+    transport: http
+    description: MCP server for AI-assisted form building and survey data collection.
+    tools:
+    - name: list-forms
+      description: List all Tripetto forms in the account
+      hints:
+        readOnly: true
+        openWorld: true
+      call: tripetto.list-forms
+      with:
+        page: tools.page
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-form
+      description: Retrieve a specific form definition by ID
+      hints:
+        readOnly: true
+        openWorld: false
+      call: tripetto.get-form
+      with:
+        formId: tools.formId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-form
+      description: Create a new smart form with conditional logic
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tripetto.create-form
+      with:
+        name: tools.name
+        description: tools.description
+        definition: tools.definition
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-form
+      description: Update an existing form definition
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: tripetto.update-form
+      with:
+        formId: tools.formId
+        name: tools.name
+        definition: tools.definition
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-form
+      description: Delete a form and all its collected responses
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: tripetto.delete-form
+      with:
+        formId: tools.formId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-form-responses
+      description: List responses collected for a specific form
+      hints:
+        readOnly: true
+        openWorld: true
+      call: tripetto.list-form-responses
+      with:
+        formId: tools.formId
+        page: tools.page
+        limit: tools.limit
+        from: tools.from
+        to: tools.to
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-form-webhooks
+      description: List webhook integrations configured for a form
+      hints:
+        readOnly: true
+        openWorld: false
+      call: tripetto.list-form-webhooks
+      with:
+        formId: tools.formId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-form-webhook
+      description: Add a webhook endpoint to deliver form responses to external services
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tripetto.create-form-webhook
+      with:
+        formId: tools.formId
+        url: tools.url
+        sendRawData: tools.send_raw_data
+      outputParameters:
+      - type: object
+        mapping: $.
