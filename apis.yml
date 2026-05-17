@@ -42,7 +42,7 @@ apis:
         url: https://tripetto.com/sdk/docs/
       - type: Builder API Reference
         url: https://tripetto.com/sdk/docs/builder/api/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://tripetto.com/sdk/docs/builder/introduction/
       - type: npm Package
         url: https://www.npmjs.com/package/@tripetto/builder
@@ -88,13 +88,13 @@ common:
     url: https://tripetto.com/tutorials/
   - type: Pricing
     url: https://tripetto.com/pricing/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://gitlab.com/tripetto
   - type: npm Organization
     url: https://www.npmjs.com/org/tripetto
   - type: Login
     url: https://tripetto.com/app/sign-in/
-  - type: Sign Up
+  - type: SignUp
     url: https://tripetto.com/app/sign-up/
   - type: OpenAPI
     url: openapi/tripetto-form-builder-openapi.yml
@@ -104,7 +104,7 @@ common:
     url: json-schema/tripetto-response-schema.json
   - type: JSON Structure
     url: json-structure/tripetto-form-structure.json
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/tripetto-context.jsonld
   - type: Spectral Rules
     url: rules/tripetto-rules.yml
