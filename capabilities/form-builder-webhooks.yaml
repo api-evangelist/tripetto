@@ -1,0 +1,147 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tripetto FormBuilder SDK API — Webhooks
+  description: 'Tripetto FormBuilder SDK API — Webhooks. 3 operations. Lead operation: List Form Webhooks. Self-contained
+    Naftiko capability covering one Tripetto business surface.'
+  tags:
+  - Tripetto
+  - Webhooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRIPETTO_API_KEY: TRIPETTO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: form-builder-webhooks
+    baseUri: https://tripetto.com
+    description: Tripetto FormBuilder SDK API — Webhooks business capability. Self-contained, no shared references.
+    resources:
+    - name: app-api-forms-formId-webhooks
+      path: /app/api/forms/{formId}/webhooks
+      operations:
+      - name: listformwebhooks
+        method: GET
+        description: List Form Webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createformwebhook
+        method: POST
+        description: Create Form Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: app-api-forms-formId-webhooks-webhookId
+      path: /app/api/forms/{formId}/webhooks/{webhookId}
+      operations:
+      - name: deleteformwebhook
+        method: DELETE
+        description: Delete Form Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhookId
+          in: path
+          type: string
+          description: The unique identifier of the webhook
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TRIPETTO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: form-builder-webhooks-rest
+    port: 8080
+    description: REST adapter for Tripetto FormBuilder SDK API — Webhooks. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/app/api/forms/{formid}/webhooks
+      name: app-api-forms-formid-webhooks
+      description: REST surface for app-api-forms-formId-webhooks.
+      operations:
+      - method: GET
+        name: listformwebhooks
+        description: List Form Webhooks
+        call: form-builder-webhooks.listformwebhooks
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createformwebhook
+        description: Create Form Webhook
+        call: form-builder-webhooks.createformwebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/app/api/forms/{formid}/webhooks/{webhookid}
+      name: app-api-forms-formid-webhooks-webhookid
+      description: REST surface for app-api-forms-formId-webhooks-webhookId.
+      operations:
+      - method: DELETE
+        name: deleteformwebhook
+        description: Delete Form Webhook
+        call: form-builder-webhooks.deleteformwebhook
+        with:
+          webhookId: rest.webhookId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: form-builder-webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tripetto FormBuilder SDK API — Webhooks. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-form-webhooks
+      description: List Form Webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: form-builder-webhooks.listformwebhooks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-form-webhook
+      description: Create Form Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: form-builder-webhooks.createformwebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-form-webhook
+      description: Delete Form Webhook
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: form-builder-webhooks.deleteformwebhook
+      with:
+        webhookId: tools.webhookId
+      outputParameters:
+      - type: object
+        mapping: $.

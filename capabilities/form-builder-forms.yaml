@@ -1,0 +1,212 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tripetto FormBuilder SDK API — Forms
+  description: 'Tripetto FormBuilder SDK API — Forms. 5 operations. Lead operation: List Forms. Self-contained Naftiko capability
+    covering one Tripetto business surface.'
+  tags:
+  - Tripetto
+  - Forms
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRIPETTO_API_KEY: TRIPETTO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: form-builder-forms
+    baseUri: https://tripetto.com
+    description: Tripetto FormBuilder SDK API — Forms business capability. Self-contained, no shared references.
+    resources:
+    - name: app-api-forms
+      path: /app/api/forms
+      operations:
+      - name: listforms
+        method: GET
+        description: List Forms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: limit
+          in: query
+          type: integer
+          description: Number of forms per page
+      - name: createform
+        method: POST
+        description: Create Form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: app-api-forms-formId
+      path: /app/api/forms/{formId}
+      operations:
+      - name: getform
+        method: GET
+        description: Get Form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateform
+        method: PUT
+        description: Update Form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteform
+        method: DELETE
+        description: Delete Form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.TRIPETTO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: form-builder-forms-rest
+    port: 8080
+    description: REST adapter for Tripetto FormBuilder SDK API — Forms. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/app/api/forms
+      name: app-api-forms
+      description: REST surface for app-api-forms.
+      operations:
+      - method: GET
+        name: listforms
+        description: List Forms
+        call: form-builder-forms.listforms
+        with:
+          page: rest.page
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createform
+        description: Create Form
+        call: form-builder-forms.createform
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/app/api/forms/{formid}
+      name: app-api-forms-formid
+      description: REST surface for app-api-forms-formId.
+      operations:
+      - method: GET
+        name: getform
+        description: Get Form
+        call: form-builder-forms.getform
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateform
+        description: Update Form
+        call: form-builder-forms.updateform
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteform
+        description: Delete Form
+        call: form-builder-forms.deleteform
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: form-builder-forms-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tripetto FormBuilder SDK API — Forms. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-forms
+      description: List Forms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: form-builder-forms.listforms
+      with:
+        page: tools.page
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-form
+      description: Create Form
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: form-builder-forms.createform
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-form
+      description: Get Form
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: form-builder-forms.getform
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-form
+      description: Update Form
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: form-builder-forms.updateform
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-form
+      description: Delete Form
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: form-builder-forms.deleteform
+      outputParameters:
+      - type: object
+        mapping: $.
