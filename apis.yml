@@ -6,7 +6,7 @@ description: >-
   and runners into web applications, along with webhook capabilities for delivering form responses to external services
   and automation platforms.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Forms
   - Surveys
