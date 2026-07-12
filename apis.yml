@@ -72,6 +72,12 @@ apis:
       - type: Make Integration
         url: https://www.make.com/en/integrations/tripetto
 common:
+  - type: DomainSecurity
+    url: security/tripetto-domain-security.yml
+  - type: Authentication
+    url: authentication/tripetto-authentication.yml
+  - url: https://tripetto.com/blog/
+    type: Blog
   - type: GitHubOrganization
     url: https://github.com/tripetto
   - type: LinkedIn
