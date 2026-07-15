@@ -72,6 +72,8 @@ apis:
       - type: Make Integration
         url: https://www.make.com/en/integrations/tripetto
 common:
+  - type: AgenticAccess
+    url: agentic-access/tripetto-agentic-access.yml
   - type: DomainSecurity
     url: security/tripetto-domain-security.yml
   - type: Authentication
