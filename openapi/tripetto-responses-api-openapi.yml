@@ -1,0 +1,164 @@
+openapi: 3.0.3
+info:
+  title: Tripetto FormBuilder SDK Forms Responses API
+  description: The Tripetto FormBuilder SDK API provides capabilities for building and running smart conversational forms and surveys. The SDK exposes client-side JavaScript/TypeScript APIs for embedding form builders and runners into web applications, along with webhook delivery for routing form responses to external services.
+  version: 1.0.0
+  contact:
+    url: https://tripetto.com/help/
+  termsOfService: https://tripetto.com/terms/
+  license:
+    name: Commercial
+    url: https://tripetto.com/pricing/
+servers:
+- url: https://tripetto.com
+  description: Tripetto Platform
+tags:
+- name: Responses
+  description: Access collected form response data
+paths:
+  /app/api/forms/{formId}/responses:
+    get:
+      operationId: listFormResponses
+      summary: List Form Responses
+      description: Retrieve all responses submitted for a specific form.
+      tags:
+      - Responses
+      security:
+      - BearerAuth: []
+      parameters:
+      - $ref: '#/components/parameters/formId'
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        description: Number of responses per page
+        schema:
+          type: integer
+          default: 50
+      - name: from
+        in: query
+        description: Filter responses from this ISO 8601 date
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: Filter responses to this ISO 8601 date
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: List of form responses
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FormResponse'
+                  total:
+                    type: integer
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /app/api/forms/{formId}/responses/{responseId}:
+    get:
+      operationId: getFormResponse
+      summary: Get Form Response
+      description: Retrieve a specific form response by ID.
+      tags:
+      - Responses
+      security:
+      - BearerAuth: []
+      parameters:
+      - $ref: '#/components/parameters/formId'
+      - name: responseId
+        in: path
+        required: true
+        description: The unique identifier of the form response
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Form response details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    FormResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique response identifier
+        formId:
+          type: string
+          description: Parent form identifier
+        fields:
+          type: array
+          description: Answered fields with values
+          items:
+            $ref: '#/components/schemas/ResponseField'
+        submittedAt:
+          type: string
+          format: date-time
+          description: Response submission timestamp
+        fingerprint:
+          type: string
+          description: Respondent fingerprint (anonymized)
+    ResponseField:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Field/node identifier
+        name:
+          type: string
+          description: Field label
+        value:
+          description: Submitted value (string, number, boolean, or array)
+        type:
+          type: string
+          description: Data type of the response value
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    formId:
+      name: formId
+      in: path
+      required: true
+      description: The unique identifier of the form
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token for API authentication
+externalDocs:
+  description: Tripetto FormBuilder SDK Documentation
+  url: https://tripetto.com/sdk/docs/
