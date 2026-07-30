@@ -6,7 +6,20 @@ description: >-
   and runners into web applications, along with webhook capabilities for delivering form responses to external services
   and automation platforms.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/tripetto.png
 tags:
   - Forms
   - Surveys
@@ -19,59 +32,99 @@ created: '2026-03-16'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: tripetto:tripetto-form-builder-sdk
-    name: Tripetto FormBuilder SDK
-    description: >-
-      The Tripetto FormBuilder SDK provides JavaScript and TypeScript APIs for embedding interactive form builders into
-      web applications. Supports React, Angular, and plain JavaScript integration with a rich component model for
-      building, running, and collecting responses from smart conversational forms.
-    humanURL: https://tripetto.com/sdk/
-    baseURL: https://tripetto.com
-    tags:
-      - Forms
-      - SDK
-      - JavaScript
-      - TypeScript
-      - React
-      - Angular
-    properties:
-      - type: Documentation
-        url: https://tripetto.com/sdk/docs/
-      - type: Builder API Reference
-        url: https://tripetto.com/sdk/docs/builder/api/
-      - type: GettingStarted
-        url: https://tripetto.com/sdk/docs/builder/introduction/
-      - type: npm Package
-        url: https://www.npmjs.com/package/@tripetto/builder
-      - type: OpenAPI
-        url: openapi/tripetto-form-builder-openapi.yml
-      - type: JSONSchema
-        url: json-schema/tripetto-form-schema.json
-      - type: JSONSchema
-        url: json-schema/tripetto-response-schema.json
-  - aid: tripetto:tripetto-webhooks
-    name: Tripetto Webhooks
-    description: >-
-      Tripetto supports outbound webhooks that deliver form response data to external services and automation platforms
-      including Make, Zapier, and Pabbly Connect. Custom webhook endpoints receive form submission payloads as HTTP POST
-      requests with structured JSON response data.
-    humanURL: https://tripetto.com/help/articles/how-to-automate-a-webhook-to-connect-to-other-services-for-each-new-result/
-    baseURL: https://tripetto.com
-    tags:
-      - Webhooks
-      - Automation
-      - Forms
-      - Integrations
-    properties:
-      - type: Documentation
-        url: https://tripetto.com/help/articles/how-to-automate-a-webhook-to-connect-to-other-services-for-each-new-result/
-      - type: Webhook Raw Data
-        url: https://tripetto.com/help/articles/use-raw-response-data-in-webhooks/
-      - type: Zapier Integration
-        url: https://zapier.com/apps/tripetto/integrations
-      - type: Make Integration
-        url: https://www.make.com/en/integrations/tripetto
+- aid: tripetto:tripetto-webhooks
+  name: Tripetto Webhooks
+  description: >-
+    Tripetto supports outbound webhooks that deliver form response data to external services and automation
+    platforms including Make, Zapier, and Pabbly Connect. Custom webhook endpoints receive form submission
+    payloads as HTTP POST requests with structured JSON response data.
+  humanURL: >-
+    https://tripetto.com/help/articles/how-to-automate-a-webhook-to-connect-to-other-services-for-each-new-result/
+  baseURL: https://tripetto.com
+  tags:
+  - Webhooks
+  - Automation
+  - Forms
+  - Integrations
+  properties:
+  - type: Documentation
+    url: >-
+      https://tripetto.com/help/articles/how-to-automate-a-webhook-to-connect-to-other-services-for-each-new-result/
+  - type: Webhook Raw Data
+    url: https://tripetto.com/help/articles/use-raw-response-data-in-webhooks/
+  - type: Zapier Integration
+    url: https://zapier.com/apps/tripetto/integrations
+  - type: Make Integration
+    url: https://www.make.com/en/integrations/tripetto
+- aid: tripetto:tripetto-forms-api
+  name: Tripetto Forms API
+  description: Create and manage form definitions
+  humanURL: https://tripetto.com/sdk/
+  baseURL: https://tripetto.com
+  tags:
+  - Forms
+  properties:
+  - type: OpenAPI
+    url: openapi/tripetto-forms-api-openapi.yml
+  - type: Documentation
+    url: https://tripetto.com/sdk/docs/
+  - type: Builder API Reference
+    url: https://tripetto.com/sdk/docs/builder/api/
+  - type: GettingStarted
+    url: https://tripetto.com/sdk/docs/builder/introduction/
+  - type: npm Package
+    url: https://www.npmjs.com/package/@tripetto/builder
+  - type: JSONSchema
+    url: json-schema/tripetto-form-schema.json
+  - type: JSONSchema
+    url: json-schema/tripetto-response-schema.json
+- aid: tripetto:tripetto-responses-api
+  name: Tripetto Responses API
+  description: Access collected form response data
+  humanURL: https://tripetto.com/sdk/
+  baseURL: https://tripetto.com
+  tags:
+  - Responses
+  properties:
+  - type: OpenAPI
+    url: openapi/tripetto-responses-api-openapi.yml
+  - type: Documentation
+    url: https://tripetto.com/sdk/docs/
+  - type: Builder API Reference
+    url: https://tripetto.com/sdk/docs/builder/api/
+  - type: GettingStarted
+    url: https://tripetto.com/sdk/docs/builder/introduction/
+  - type: npm Package
+    url: https://www.npmjs.com/package/@tripetto/builder
+  - type: JSONSchema
+    url: json-schema/tripetto-form-schema.json
+  - type: JSONSchema
+    url: json-schema/tripetto-response-schema.json
+- aid: tripetto:tripetto-webhooks-api
+  name: Tripetto Webhooks API
+  description: Configure outbound webhook integrations
+  humanURL: https://tripetto.com/sdk/
+  baseURL: https://tripetto.com
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/tripetto-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://tripetto.com/sdk/docs/
+  - type: Builder API Reference
+    url: https://tripetto.com/sdk/docs/builder/api/
+  - type: GettingStarted
+    url: https://tripetto.com/sdk/docs/builder/introduction/
+  - type: npm Package
+    url: https://www.npmjs.com/package/@tripetto/builder
+  - type: JSONSchema
+    url: json-schema/tripetto-form-schema.json
+  - type: JSONSchema
+    url: json-schema/tripetto-response-schema.json
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/tripetto/overview
   - type: AgenticAccess
     url: agentic-access/tripetto-agentic-access.yml
   - type: DomainSecurity
