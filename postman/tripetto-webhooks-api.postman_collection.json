@@ -1,0 +1,471 @@
+{
+  "info": {
+    "_postman_id": "4d4456f3-fdf0-4335-adbf-2f8ef0b76687",
+    "name": "Tripetto FormBuilder SDK Forms Webhooks API",
+    "description": "The Tripetto FormBuilder SDK API provides capabilities for building and running smart conversational forms and surveys. The SDK exposes client-side JavaScript/TypeScript APIs for embedding form builders and runners into web applications, along with webhook delivery for routing form responses to external services.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:19:21.000Z",
+    "updatedAt": "2026-07-28T03:19:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4d4456f3-fdf0-4335-adbf-2f8ef0b76687"
+  },
+  "item": [
+    {
+      "name": "app",
+      "item": [
+        {
+          "name": "api",
+          "item": [
+            {
+              "name": "forms",
+              "item": [
+                {
+                  "name": "{formId}",
+                  "item": [
+                    {
+                      "name": "webhooks",
+                      "item": [
+                        {
+                          "name": "{webhookId}",
+                          "item": [
+                            {
+                              "name": "Delete Form Webhook",
+                              "id": "250847d1-09ca-4e18-9745-9f30a0524961",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/api/forms/:formId/webhooks/:webhookId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    "api",
+                                    "forms",
+                                    ":formId",
+                                    "webhooks",
+                                    ":webhookId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "73640c30-ff04-4711-8cc2-6d17e6dd3d66",
+                                      "key": "formId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier of the form"
+                                    },
+                                    {
+                                      "id": "aa7c7aeb-d990-4cd9-9d0c-a1f613aa3bbf",
+                                      "key": "webhookId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier of the webhook"
+                                    }
+                                  ]
+                                },
+                                "description": "Remove a webhook configuration from a form."
+                              },
+                              "response": [
+                                {
+                                  "id": "d60c7f9c-c665-4309-8821-89a2527b83d0",
+                                  "name": "Webhook deleted",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/app/api/forms/:formId/webhooks/:webhookId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "app",
+                                        "api",
+                                        "forms",
+                                        ":formId",
+                                        "webhooks",
+                                        ":webhookId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "formId"
+                                        },
+                                        {
+                                          "key": "webhookId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T03:19:22.000Z",
+                                  "updatedAt": "2026-07-28T03:19:22.000Z",
+                                  "uid": "35240-d60c7f9c-c665-4309-8821-89a2527b83d0"
+                                },
+                                {
+                                  "id": "b2ff9e1c-9113-47bb-89af-f96ef03f3e07",
+                                  "name": "Resource not found",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/app/api/forms/:formId/webhooks/:webhookId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "app",
+                                        "api",
+                                        "forms",
+                                        ":formId",
+                                        "webhooks",
+                                        ":webhookId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "formId"
+                                        },
+                                        {
+                                          "key": "webhookId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T03:19:22.000Z",
+                                  "updatedAt": "2026-07-28T03:19:22.000Z",
+                                  "uid": "35240-b2ff9e1c-9113-47bb-89af-f96ef03f3e07"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T03:19:22.000Z",
+                              "updatedAt": "2026-07-28T03:19:22.000Z",
+                              "uid": "35240-250847d1-09ca-4e18-9745-9f30a0524961"
+                            }
+                          ],
+                          "id": "04aae50d-fde6-4413-8193-1346e057aae2",
+                          "createdAt": "2026-07-28T03:19:22.000Z",
+                          "updatedAt": "2026-07-28T03:19:22.000Z",
+                          "uid": "35240-04aae50d-fde6-4413-8193-1346e057aae2"
+                        },
+                        {
+                          "name": "List Form Webhooks",
+                          "id": "584cfa9e-bd24-4eda-9755-0e7b891bbbc3",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/app/api/forms/:formId/webhooks",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "app",
+                                "api",
+                                "forms",
+                                ":formId",
+                                "webhooks"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f088d2c9-1ff1-42d5-9629-f816e9e8e128",
+                                  "key": "formId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the form"
+                                }
+                              ]
+                            },
+                            "description": "List all configured webhooks for a form."
+                          },
+                          "response": [
+                            {
+                              "id": "1299ee31-2e1e-4b4f-aa8c-b5d9abf4e4ec",
+                              "name": "List of webhooks",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/api/forms/:formId/webhooks",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    "api",
+                                    "forms",
+                                    ":formId",
+                                    "webhooks"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "formId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"sendRawData\": false,\n      \"enabled\": true,\n      \"created\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"sendRawData\": false,\n      \"enabled\": true,\n      \"created\": \"<dateTime>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T03:19:22.000Z",
+                              "updatedAt": "2026-07-28T03:19:22.000Z",
+                              "uid": "35240-1299ee31-2e1e-4b4f-aa8c-b5d9abf4e4ec"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:19:22.000Z",
+                          "updatedAt": "2026-07-28T03:19:22.000Z",
+                          "uid": "35240-584cfa9e-bd24-4eda-9755-0e7b891bbbc3"
+                        },
+                        {
+                          "name": "Create Form Webhook",
+                          "id": "01b429db-3c59-4a55-b597-90c865272314",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"url\": \"<uri>\",\n  \"sendRawData\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/app/api/forms/:formId/webhooks",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "app",
+                                "api",
+                                "forms",
+                                ":formId",
+                                "webhooks"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f39e5cba-d8f7-44f3-8f13-b68f3b8fadf6",
+                                  "key": "formId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the form"
+                                }
+                              ]
+                            },
+                            "description": "Configure a webhook to receive form responses at a custom URL."
+                          },
+                          "response": [
+                            {
+                              "id": "ec3e1f2f-d878-43f3-b813-fbaf95607873",
+                              "name": "Webhook created",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"url\": \"<uri>\",\n  \"sendRawData\": false\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/api/forms/:formId/webhooks",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    "api",
+                                    "forms",
+                                    ":formId",
+                                    "webhooks"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "formId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"sendRawData\": false,\n  \"enabled\": true,\n  \"created\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T03:19:22.000Z",
+                              "updatedAt": "2026-07-28T03:19:22.000Z",
+                              "uid": "35240-ec3e1f2f-d878-43f3-b813-fbaf95607873"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:19:22.000Z",
+                          "updatedAt": "2026-07-28T03:19:22.000Z",
+                          "uid": "35240-01b429db-3c59-4a55-b597-90c865272314"
+                        }
+                      ],
+                      "id": "237b3067-10f7-4b56-9768-22ac71b90998",
+                      "createdAt": "2026-07-28T03:19:22.000Z",
+                      "updatedAt": "2026-07-28T03:19:22.000Z",
+                      "uid": "35240-237b3067-10f7-4b56-9768-22ac71b90998"
+                    }
+                  ],
+                  "id": "841df891-6dbc-475d-9422-3b334b8fe6f3",
+                  "createdAt": "2026-07-28T03:19:22.000Z",
+                  "updatedAt": "2026-07-28T03:19:22.000Z",
+                  "uid": "35240-841df891-6dbc-475d-9422-3b334b8fe6f3"
+                }
+              ],
+              "id": "ba814d98-4c55-475d-83e1-7161cc39f0b7",
+              "createdAt": "2026-07-28T03:19:22.000Z",
+              "updatedAt": "2026-07-28T03:19:22.000Z",
+              "uid": "35240-ba814d98-4c55-475d-83e1-7161cc39f0b7"
+            }
+          ],
+          "id": "851ab577-ad36-4fcf-be31-263be44a747f",
+          "createdAt": "2026-07-28T03:19:22.000Z",
+          "updatedAt": "2026-07-28T03:19:22.000Z",
+          "uid": "35240-851ab577-ad36-4fcf-be31-263be44a747f"
+        }
+      ],
+      "id": "63dad6b7-f258-489f-8ea6-8c8edf13f7d9",
+      "createdAt": "2026-07-28T03:19:22.000Z",
+      "updatedAt": "2026-07-28T03:19:22.000Z",
+      "uid": "35240-63dad6b7-f258-489f-8ea6-8c8edf13f7d9"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://tripetto.com"
+    }
+  ]
+}

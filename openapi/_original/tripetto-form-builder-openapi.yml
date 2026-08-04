@@ -1,0 +1,540 @@
+openapi: 3.0.3
+info:
+  title: Tripetto FormBuilder SDK API
+  description: >-
+    The Tripetto FormBuilder SDK API provides capabilities for building and running
+    smart conversational forms and surveys. The SDK exposes client-side JavaScript/TypeScript
+    APIs for embedding form builders and runners into web applications, along with webhook
+    delivery for routing form responses to external services.
+  version: 1.0.0
+  contact:
+    url: https://tripetto.com/help/
+  termsOfService: https://tripetto.com/terms/
+  license:
+    name: Commercial
+    url: https://tripetto.com/pricing/
+externalDocs:
+  description: Tripetto FormBuilder SDK Documentation
+  url: https://tripetto.com/sdk/docs/
+
+servers:
+  - url: https://tripetto.com
+    description: Tripetto Platform
+
+paths:
+  /app/api/forms:
+    get:
+      operationId: listForms
+      summary: List Forms
+      description: Retrieve a list of forms created in the Tripetto account.
+      tags:
+        - Forms
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          description: Page number for pagination
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          description: Number of forms per page
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: List of forms
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Form'
+                  total:
+                    type: integer
+                  page:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+    post:
+      operationId: createForm
+      summary: Create Form
+      description: Create a new form with a definition.
+      tags:
+        - Forms
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFormRequest'
+      responses:
+        '201':
+          description: Form created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Form'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /app/api/forms/{formId}:
+    get:
+      operationId: getForm
+      summary: Get Form
+      description: Retrieve a specific form by its ID.
+      tags:
+        - Forms
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/formId'
+      responses:
+        '200':
+          description: Form details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Form'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    put:
+      operationId: updateForm
+      summary: Update Form
+      description: Update an existing form definition.
+      tags:
+        - Forms
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/formId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFormRequest'
+      responses:
+        '200':
+          description: Form updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Form'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      operationId: deleteForm
+      summary: Delete Form
+      description: Delete a form and all its responses.
+      tags:
+        - Forms
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/formId'
+      responses:
+        '204':
+          description: Form deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /app/api/forms/{formId}/responses:
+    get:
+      operationId: listFormResponses
+      summary: List Form Responses
+      description: Retrieve all responses submitted for a specific form.
+      tags:
+        - Responses
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/formId'
+        - name: page
+          in: query
+          description: Page number for pagination
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          description: Number of responses per page
+          schema:
+            type: integer
+            default: 50
+        - name: from
+          in: query
+          description: Filter responses from this ISO 8601 date
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          description: Filter responses to this ISO 8601 date
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: List of form responses
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FormResponse'
+                  total:
+                    type: integer
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /app/api/forms/{formId}/responses/{responseId}:
+    get:
+      operationId: getFormResponse
+      summary: Get Form Response
+      description: Retrieve a specific form response by ID.
+      tags:
+        - Responses
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/formId'
+        - name: responseId
+          in: path
+          required: true
+          description: The unique identifier of the form response
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Form response details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /app/api/forms/{formId}/webhooks:
+    get:
+      operationId: listFormWebhooks
+      summary: List Form Webhooks
+      description: List all configured webhooks for a form.
+      tags:
+        - Webhooks
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/formId'
+      responses:
+        '200':
+          description: List of webhooks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Webhook'
+
+    post:
+      operationId: createFormWebhook
+      summary: Create Form Webhook
+      description: Configure a webhook to receive form responses at a custom URL.
+      tags:
+        - Webhooks
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/formId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWebhookRequest'
+      responses:
+        '201':
+          description: Webhook created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+
+  /app/api/forms/{formId}/webhooks/{webhookId}:
+    delete:
+      operationId: deleteFormWebhook
+      summary: Delete Form Webhook
+      description: Remove a webhook configuration from a form.
+      tags:
+        - Webhooks
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/formId'
+        - name: webhookId
+          in: path
+          required: true
+          description: The unique identifier of the webhook
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Webhook deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token for API authentication
+
+  parameters:
+    formId:
+      name: formId
+      in: path
+      required: true
+      description: The unique identifier of the form
+      schema:
+        type: string
+
+  schemas:
+    Form:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique form identifier
+        name:
+          type: string
+          description: Human-readable form name
+        description:
+          type: string
+          description: Optional form description
+        definition:
+          $ref: '#/components/schemas/FormDefinition'
+        created:
+          type: string
+          format: date-time
+          description: Form creation timestamp
+        modified:
+          type: string
+          format: date-time
+          description: Last modification timestamp
+        responseCount:
+          type: integer
+          description: Total number of responses collected
+
+    FormDefinition:
+      type: object
+      description: >-
+        JSON definition of a Tripetto form, including nodes, sections, conditions,
+        and logic. Generated by the Builder and consumed by Runners.
+      properties:
+        nodes:
+          type: array
+          description: Array of form nodes (questions/blocks)
+          items:
+            $ref: '#/components/schemas/FormNode'
+        sections:
+          type: array
+          description: Grouping sections within the form
+          items:
+            $ref: '#/components/schemas/FormSection'
+        conditions:
+          type: array
+          description: Conditional logic rules
+          items:
+            type: object
+
+    FormNode:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique node identifier
+        type:
+          type: string
+          description: Block type identifier (e.g., text, email, yes-no, dropdown)
+        name:
+          type: string
+          description: Node/question label
+        required:
+          type: boolean
+          description: Whether a response is required
+        settings:
+          type: object
+          description: Block-specific configuration settings
+
+    FormSection:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique section identifier
+        name:
+          type: string
+          description: Section label
+        nodes:
+          type: array
+          description: Node IDs within this section
+          items:
+            type: string
+
+    FormResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique response identifier
+        formId:
+          type: string
+          description: Parent form identifier
+        fields:
+          type: array
+          description: Answered fields with values
+          items:
+            $ref: '#/components/schemas/ResponseField'
+        submittedAt:
+          type: string
+          format: date-time
+          description: Response submission timestamp
+        fingerprint:
+          type: string
+          description: Respondent fingerprint (anonymized)
+
+    ResponseField:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Field/node identifier
+        name:
+          type: string
+          description: Field label
+        value:
+          description: Submitted value (string, number, boolean, or array)
+        type:
+          type: string
+          description: Data type of the response value
+
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique webhook identifier
+        url:
+          type: string
+          format: uri
+          description: Destination URL for webhook payloads
+        sendRawData:
+          type: boolean
+          description: Whether to send raw response data
+          default: false
+        enabled:
+          type: boolean
+          description: Whether this webhook is active
+          default: true
+        created:
+          type: string
+          format: date-time
+
+    CreateFormRequest:
+      type: object
+      required:
+        - name
+        - definition
+      properties:
+        name:
+          type: string
+          description: Form name
+        description:
+          type: string
+          description: Optional form description
+        definition:
+          $ref: '#/components/schemas/FormDefinition'
+
+    UpdateFormRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated form name
+        description:
+          type: string
+          description: Updated form description
+        definition:
+          $ref: '#/components/schemas/FormDefinition'
+
+    CreateWebhookRequest:
+      type: object
+      required:
+        - url
+      properties:
+        url:
+          type: string
+          format: uri
+          description: Destination URL to receive webhook POST requests
+        sendRawData:
+          type: boolean
+          description: Send raw nested response data structure
+          default: false
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
+
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+tags:
+  - name: Forms
+    description: Create and manage form definitions
+  - name: Responses
+    description: Access collected form response data
+  - name: Webhooks
+    description: Configure outbound webhook integrations

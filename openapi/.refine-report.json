@@ -1,0 +1,18 @@
+{
+  "provider": "tripetto",
+  "sources": [
+    "tripetto-forms-api-openapi.yml",
+    "tripetto-responses-api-openapi.yml",
+    "tripetto-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "tripetto-forms-api-openapi.yml",
+    "tripetto-responses-api-openapi.yml",
+    "tripetto-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

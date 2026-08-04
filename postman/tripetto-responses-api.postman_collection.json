@@ -1,0 +1,465 @@
+{
+  "info": {
+    "_postman_id": "ccb1a15d-ec1e-478b-8605-03ccfd96928d",
+    "name": "Tripetto FormBuilder SDK Forms Responses API",
+    "description": "The Tripetto FormBuilder SDK API provides capabilities for building and running smart conversational forms and surveys. The SDK exposes client-side JavaScript/TypeScript APIs for embedding form builders and runners into web applications, along with webhook delivery for routing form responses to external services.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:19:20.000Z",
+    "updatedAt": "2026-07-28T03:19:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ccb1a15d-ec1e-478b-8605-03ccfd96928d"
+  },
+  "item": [
+    {
+      "name": "app",
+      "item": [
+        {
+          "name": "api",
+          "item": [
+            {
+              "name": "forms",
+              "item": [
+                {
+                  "name": "{formId}",
+                  "item": [
+                    {
+                      "name": "responses",
+                      "item": [
+                        {
+                          "name": "{responseId}",
+                          "item": [
+                            {
+                              "name": "Get Form Response",
+                              "id": "658a1d4a-b021-4309-91b9-498e0ff8464c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/api/forms/:formId/responses/:responseId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    "api",
+                                    "forms",
+                                    ":formId",
+                                    "responses",
+                                    ":responseId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "6280b662-b9f2-4052-bda6-dd404f4d5a3b",
+                                      "key": "formId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier of the form"
+                                    },
+                                    {
+                                      "id": "17f0820e-89f3-41fd-abe6-fde0384f5264",
+                                      "key": "responseId",
+                                      "value": "<string>",
+                                      "description": "(Required) The unique identifier of the form response"
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve a specific form response by ID."
+                              },
+                              "response": [
+                                {
+                                  "id": "74773fd8-6f53-4819-93ad-ae625e9584bf",
+                                  "name": "Form response details",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/app/api/forms/:formId/responses/:responseId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "app",
+                                        "api",
+                                        "forms",
+                                        ":formId",
+                                        "responses",
+                                        ":responseId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "formId"
+                                        },
+                                        {
+                                          "key": "responseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"id\": \"<string>\",\n  \"formId\": \"<string>\",\n  \"fields\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"value\": {\n        \"description\": \"Submitted value (string, number, boolean, or array)\"\n      },\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"value\": {\n        \"description\": \"Submitted value (string, number, boolean, or array)\"\n      },\n      \"type\": \"<string>\"\n    }\n  ],\n  \"submittedAt\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T03:19:21.000Z",
+                                  "updatedAt": "2026-07-28T03:19:21.000Z",
+                                  "uid": "35240-74773fd8-6f53-4819-93ad-ae625e9584bf"
+                                },
+                                {
+                                  "id": "9d422fed-950c-488c-88f1-c7b6ebbd7c48",
+                                  "name": "Resource not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/app/api/forms/:formId/responses/:responseId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "app",
+                                        "api",
+                                        "forms",
+                                        ":formId",
+                                        "responses",
+                                        ":responseId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "formId"
+                                        },
+                                        {
+                                          "key": "responseId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T03:19:21.000Z",
+                                  "updatedAt": "2026-07-28T03:19:21.000Z",
+                                  "uid": "35240-9d422fed-950c-488c-88f1-c7b6ebbd7c48"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T03:19:21.000Z",
+                              "updatedAt": "2026-07-28T03:19:21.000Z",
+                              "uid": "35240-658a1d4a-b021-4309-91b9-498e0ff8464c"
+                            }
+                          ],
+                          "id": "96210505-a43d-4fd5-a0d5-93d07502a9f3",
+                          "createdAt": "2026-07-28T03:19:21.000Z",
+                          "updatedAt": "2026-07-28T03:19:21.000Z",
+                          "uid": "35240-96210505-a43d-4fd5-a0d5-93d07502a9f3"
+                        },
+                        {
+                          "name": "List Form Responses",
+                          "id": "81b7563f-c385-4e40-ba01-7ff804c29e88",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/app/api/forms/:formId/responses?page=1&limit=50&from=<dateTime>&to=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "app",
+                                "api",
+                                "forms",
+                                ":formId",
+                                "responses"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Page number for pagination",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "Number of responses per page",
+                                  "key": "limit",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Filter responses from this ISO 8601 date",
+                                  "key": "from",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "Filter responses to this ISO 8601 date",
+                                  "key": "to",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "3bf4c75e-3ccc-4dd5-b998-be9350324938",
+                                  "key": "formId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the form"
+                                }
+                              ]
+                            },
+                            "description": "Retrieve all responses submitted for a specific form."
+                          },
+                          "response": [
+                            {
+                              "id": "476536ce-5040-4442-a8d5-a155d69a1c30",
+                              "name": "List of form responses",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/api/forms/:formId/responses?page=1&limit=50&from=<dateTime>&to=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    "api",
+                                    "forms",
+                                    ":formId",
+                                    "responses"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Page number for pagination",
+                                      "key": "page",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "description": "Number of responses per page",
+                                      "key": "limit",
+                                      "value": "50"
+                                    },
+                                    {
+                                      "description": "Filter responses from this ISO 8601 date",
+                                      "key": "from",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "Filter responses to this ISO 8601 date",
+                                      "key": "to",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "formId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"formId\": \"<string>\",\n      \"fields\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"Submitted value (string, number, boolean, or array)\"\n          },\n          \"type\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"Submitted value (string, number, boolean, or array)\"\n          },\n          \"type\": \"<string>\"\n        }\n      ],\n      \"submittedAt\": \"<dateTime>\",\n      \"fingerprint\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"formId\": \"<string>\",\n      \"fields\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"Submitted value (string, number, boolean, or array)\"\n          },\n          \"type\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"Submitted value (string, number, boolean, or array)\"\n          },\n          \"type\": \"<string>\"\n        }\n      ],\n      \"submittedAt\": \"<dateTime>\",\n      \"fingerprint\": \"<string>\"\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T03:19:21.000Z",
+                              "updatedAt": "2026-07-28T03:19:21.000Z",
+                              "uid": "35240-476536ce-5040-4442-a8d5-a155d69a1c30"
+                            },
+                            {
+                              "id": "ba23cc98-eba3-491e-89e0-e6cec03d024b",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/app/api/forms/:formId/responses?page=1&limit=50&from=<dateTime>&to=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "app",
+                                    "api",
+                                    "forms",
+                                    ":formId",
+                                    "responses"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Page number for pagination",
+                                      "key": "page",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "description": "Number of responses per page",
+                                      "key": "limit",
+                                      "value": "50"
+                                    },
+                                    {
+                                      "description": "Filter responses from this ISO 8601 date",
+                                      "key": "from",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "Filter responses to this ISO 8601 date",
+                                      "key": "to",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "formId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T03:19:21.000Z",
+                              "updatedAt": "2026-07-28T03:19:21.000Z",
+                              "uid": "35240-ba23cc98-eba3-491e-89e0-e6cec03d024b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:19:21.000Z",
+                          "updatedAt": "2026-07-28T03:19:21.000Z",
+                          "uid": "35240-81b7563f-c385-4e40-ba01-7ff804c29e88"
+                        }
+                      ],
+                      "id": "feaa8683-12bc-42c7-be36-3908a0c40d9c",
+                      "createdAt": "2026-07-28T03:19:21.000Z",
+                      "updatedAt": "2026-07-28T03:19:21.000Z",
+                      "uid": "35240-feaa8683-12bc-42c7-be36-3908a0c40d9c"
+                    }
+                  ],
+                  "id": "5472bcd7-f851-4408-8f95-7f1473bae462",
+                  "createdAt": "2026-07-28T03:19:21.000Z",
+                  "updatedAt": "2026-07-28T03:19:21.000Z",
+                  "uid": "35240-5472bcd7-f851-4408-8f95-7f1473bae462"
+                }
+              ],
+              "id": "0d6e670b-f1f7-4edd-9206-cef1f8da2bd0",
+              "createdAt": "2026-07-28T03:19:21.000Z",
+              "updatedAt": "2026-07-28T03:19:21.000Z",
+              "uid": "35240-0d6e670b-f1f7-4edd-9206-cef1f8da2bd0"
+            }
+          ],
+          "id": "c42024d4-3776-466e-a184-f5599f115898",
+          "createdAt": "2026-07-28T03:19:21.000Z",
+          "updatedAt": "2026-07-28T03:19:21.000Z",
+          "uid": "35240-c42024d4-3776-466e-a184-f5599f115898"
+        }
+      ],
+      "id": "65230180-ddb4-4279-976b-f7c6201313a2",
+      "createdAt": "2026-07-28T03:19:21.000Z",
+      "updatedAt": "2026-07-28T03:19:21.000Z",
+      "uid": "35240-65230180-ddb4-4279-976b-f7c6201313a2"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://tripetto.com"
+    }
+  ]
+}
