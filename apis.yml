@@ -156,7 +156,7 @@ common:
   - type: Signup
     url: https://tripetto.com/app/sign-up/
   - type: OpenAPI
-    url: openapi/tripetto-form-builder-openapi.yml
+    url: openapi/_original/tripetto-form-builder-openapi.yml
   - type: JSONSchema
     url: json-schema/tripetto-form-schema.json
   - type: JSONSchema
@@ -169,8 +169,6 @@ common:
     url: rules/tripetto-rules.yml
   - type: Vocabulary
     url: vocabulary/tripetto-vocabulary.yml
-  - type: x-profiled
-    url: 2026-05
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
