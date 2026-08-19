@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tripetto FormBuilder SDK Forms Responses API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Responses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Form Responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tripetto.com/app/api/forms/:formId/responses",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the form"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of responses per page"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Filter responses from this ISO 8601 date"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Filter responses to this ISO 8601 date"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all responses submitted for a specific form."
+        },
+        {
+          "info": {
+            "name": "Get Form Response",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tripetto.com/app/api/forms/:formId/responses/:responseId",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the form"
+              },
+              {
+                "name": "responseId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the form response"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a specific form response by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

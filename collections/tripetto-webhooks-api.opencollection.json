@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tripetto FormBuilder SDK Forms Webhooks API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Form Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tripetto.com/app/api/forms/:formId/webhooks",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the form"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all configured webhooks for a form."
+        },
+        {
+          "info": {
+            "name": "Create Form Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://tripetto.com/app/api/forms/:formId/webhooks",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the form"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Configure a webhook to receive form responses at a custom URL."
+        },
+        {
+          "info": {
+            "name": "Delete Form Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://tripetto.com/app/api/forms/:formId/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the form"
+              },
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the webhook"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove a webhook configuration from a form."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

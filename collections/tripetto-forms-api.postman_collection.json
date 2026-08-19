@@ -1,0 +1,926 @@
+{
+  "item": [
+    {
+      "id": "e7b81f7d-bd7a-425f-b265-e64cd6f5f420",
+      "name": "Forms",
+      "description": {
+        "content": "Create and manage form definitions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1e013b9d-6f16-4486-b54f-4ecf646d70a5",
+          "name": "List Forms",
+          "request": {
+            "name": "List Forms",
+            "description": {
+              "content": "Retrieve a list of forms created in the Tripetto account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                "api",
+                "forms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of forms per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f5c3f0ef-8c85-4dd5-9666-eeabd8ad4ab6",
+              "name": "List of forms",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    "api",
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"definition\": {\n        \"nodes\": [\n          {\n            \"id\": \"string\",\n            \"type\": \"string\",\n            \"name\": \"string\",\n            \"required\": true,\n            \"settings\": {}\n          },\n          {\n            \"id\": \"string\",\n            \"type\": \"string\",\n            \"name\": \"string\",\n            \"required\": true,\n            \"settings\": {}\n          }\n        ],\n        \"sections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"nodes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"nodes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      },\n      \"created\": \"1986-04-04T03:33:38.565Z\",\n      \"modified\": \"2017-04-21T13:44:49.219Z\",\n      \"responseCount\": 103\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"definition\": {\n        \"nodes\": [\n          {\n            \"id\": \"string\",\n            \"type\": \"string\",\n            \"name\": \"string\",\n            \"required\": false,\n            \"settings\": {}\n          },\n          {\n            \"id\": \"string\",\n            \"type\": \"string\",\n            \"name\": \"string\",\n            \"required\": true,\n            \"settings\": {}\n          }\n        ],\n        \"sections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"nodes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"nodes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      },\n      \"created\": \"1995-04-28T12:34:54.990Z\",\n      \"modified\": \"2005-03-26T15:38:16.421Z\",\n      \"responseCount\": 2056\n    }\n  ],\n  \"total\": 2307,\n  \"page\": 7992\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77404047-8489-42eb-8588-99d4806a2ea1",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    "api",
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 4384\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0647bdcc-eb93-4172-8e70-e8c5cbfe2e47",
+          "name": "Create Form",
+          "request": {
+            "name": "Create Form",
+            "description": {
+              "content": "Create a new form with a definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                "api",
+                "forms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"definition\": {\n    \"nodes\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      }\n    ],\n    \"sections\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"conditions\": [\n      \"<object>\",\n      \"<object>\"\n    ]\n  },\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb2ada80-7e4d-41c2-a65a-f82a1e4dbca3",
+              "name": "Form created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    "api",
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"definition\": {\n    \"nodes\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      }\n    ],\n    \"sections\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"conditions\": [\n      \"<object>\",\n      \"<object>\"\n    ]\n  },\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"definition\": {\n    \"nodes\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      }\n    ],\n    \"sections\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"conditions\": [\n      \"<object>\",\n      \"<object>\"\n    ]\n  },\n  \"created\": \"1986-05-08T18:10:46.132Z\",\n  \"modified\": \"1974-11-01T00:20:26.953Z\",\n  \"responseCount\": 1098\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3108ac99-a523-4694-88cc-d94b55666938",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    "api",
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"definition\": {\n    \"nodes\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      }\n    ],\n    \"sections\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"conditions\": [\n      \"<object>\",\n      \"<object>\"\n    ]\n  },\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 4384\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cd13b5f-5ac4-4c7c-8a66-f2667792be2e",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    "api",
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"definition\": {\n    \"nodes\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      }\n    ],\n    \"sections\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"conditions\": [\n      \"<object>\",\n      \"<object>\"\n    ]\n  },\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 4384\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d077e8de-22ce-4c02-90f6-9a1d5f2d6788",
+          "name": "Get Form",
+          "request": {
+            "name": "Get Form",
+            "description": {
+              "content": "Retrieve a specific form by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                "api",
+                "forms",
+                ":formId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "formId",
+                  "description": "(Required) The unique identifier of the form"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "785c9983-cdd0-4d7a-960b-8ad03372b27e",
+              "name": "Form details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    "api",
+                    "forms",
+                    ":formId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formId",
+                      "description": "(Required) The unique identifier of the form"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"definition\": {\n    \"nodes\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      }\n    ],\n    \"sections\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"conditions\": [\n      \"<object>\",\n      \"<object>\"\n    ]\n  },\n  \"created\": \"1986-05-08T18:10:46.132Z\",\n  \"modified\": \"1974-11-01T00:20:26.953Z\",\n  \"responseCount\": 1098\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9065ebea-2a89-45ae-98cd-9e2f4c75b62f",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    "api",
+                    "forms",
+                    ":formId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formId",
+                      "description": "(Required) The unique identifier of the form"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 4384\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d2574c9-306d-4ea6-b312-fc09dd564f88",
+          "name": "Update Form",
+          "request": {
+            "name": "Update Form",
+            "description": {
+              "content": "Update an existing form definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                "api",
+                "forms",
+                ":formId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "formId",
+                  "description": "(Required) The unique identifier of the form"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"definition\": {\n    \"nodes\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      }\n    ],\n    \"sections\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"conditions\": [\n      \"<object>\",\n      \"<object>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "702764ef-fc58-432e-9c48-f9820ff2d5c8",
+              "name": "Form updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    "api",
+                    "forms",
+                    ":formId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formId",
+                      "description": "(Required) The unique identifier of the form"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"definition\": {\n    \"nodes\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      }\n    ],\n    \"sections\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"conditions\": [\n      \"<object>\",\n      \"<object>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"definition\": {\n    \"nodes\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      }\n    ],\n    \"sections\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"conditions\": [\n      \"<object>\",\n      \"<object>\"\n    ]\n  },\n  \"created\": \"1986-05-08T18:10:46.132Z\",\n  \"modified\": \"1974-11-01T00:20:26.953Z\",\n  \"responseCount\": 1098\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30a961ed-2432-4434-bc35-7d7f819767d0",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    "api",
+                    "forms",
+                    ":formId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formId",
+                      "description": "(Required) The unique identifier of the form"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"definition\": {\n    \"nodes\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"settings\": \"<object>\"\n      }\n    ],\n    \"sections\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"nodes\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"conditions\": [\n      \"<object>\",\n      \"<object>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 4384\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40fbd5f6-9809-4e87-923d-9885e0c14c36",
+          "name": "Delete Form",
+          "request": {
+            "name": "Delete Form",
+            "description": {
+              "content": "Delete a form and all its responses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                "api",
+                "forms",
+                ":formId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "formId",
+                  "description": "(Required) The unique identifier of the form"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4d69eb0f-d916-4628-8a1a-dbf346ae1984",
+              "name": "Form deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    "api",
+                    "forms",
+                    ":formId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formId",
+                      "description": "(Required) The unique identifier of the form"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0d4e4ee5-5141-4eb2-977a-fba4bd389ff1",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "app",
+                    "api",
+                    "forms",
+                    ":formId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formId",
+                      "description": "(Required) The unique identifier of the form"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 4384\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://tripetto.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "97ac3757-9456-4365-a012-87f6f755c1c8",
+    "name": "Tripetto FormBuilder SDK Forms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tripetto FormBuilder SDK API provides capabilities for building and running smart conversational forms and surveys. The SDK exposes client-side JavaScript/TypeScript APIs for embedding form builders and runners into web applications, along with webhook delivery for routing form responses to external services.",
+      "type": "text/plain"
+    }
+  }
+}
