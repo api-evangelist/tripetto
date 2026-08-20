@@ -26,6 +26,13 @@ tags:
   - Form Builder
   - No-Code
   - SDK
+  - Webhook
+tags_raw:
+  - Forms
+  - Surveys
+  - Form Builder
+  - No-Code
+  - SDK
   - Webhooks
 url: https://raw.githubusercontent.com/api-evangelist/tripetto/refs/heads/main/apis.yml
 created: '2026-03-16'
@@ -42,6 +49,11 @@ apis:
     https://tripetto.com/help/articles/how-to-automate-a-webhook-to-connect-to-other-services-for-each-new-result/
   baseURL: https://tripetto.com
   tags:
+  - Webhook
+  - Automation
+  - Forms
+  - Integration
+  tags_raw:
   - Webhooks
   - Automation
   - Forms
@@ -106,6 +118,8 @@ apis:
   humanURL: https://tripetto.com/sdk/
   baseURL: https://tripetto.com
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
