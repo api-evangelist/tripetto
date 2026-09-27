@@ -60,7 +60,6 @@ apis:
     payloads as HTTP POST requests with structured JSON response data.
   humanURL: >-
     https://tripetto.com/help/articles/how-to-automate-a-webhook-to-connect-to-other-services-for-each-new-result/
-  baseURL: https://tripetto.com
   tags:
   - Webhook
   - Automation
@@ -85,7 +84,6 @@ apis:
   name: Tripetto Forms API
   description: Create and manage form definitions
   humanURL: https://tripetto.com/sdk/
-  baseURL: https://tripetto.com
   tags:
   - Forms
   properties:
@@ -107,7 +105,6 @@ apis:
   name: Tripetto Responses API
   description: Access collected form response data
   humanURL: https://tripetto.com/sdk/
-  baseURL: https://tripetto.com
   tags:
   - Responses
   properties:
@@ -129,7 +126,6 @@ apis:
   name: Tripetto Webhooks API
   description: Configure outbound webhook integrations
   humanURL: https://tripetto.com/sdk/
-  baseURL: https://tripetto.com
   tags:
   - Webhook
   tags_raw:
