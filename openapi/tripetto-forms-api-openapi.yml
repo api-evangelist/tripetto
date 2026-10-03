@@ -142,73 +142,26 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    UpdateFormRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated form name
-        description:
-          type: string
-          description: Updated form description
-        definition:
-          $ref: '#/components/schemas/FormDefinition'
-    CreateFormRequest:
-      type: object
-      required:
-      - name
-      - definition
-      properties:
-        name:
-          type: string
-          description: Form name
-        description:
-          type: string
-          description: Optional form description
-        definition:
-          $ref: '#/components/schemas/FormDefinition'
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        statusCode:
-          type: integer
-    FormNode:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique node identifier
-        type:
-          type: string
-          description: Block type identifier (e.g., text, email, yes-no, dropdown)
-        name:
-          type: string
-          description: Node/question label
-        required:
-          type: boolean
-          description: Whether a response is required
-        settings:
-          type: object
-          description: Block-specific configuration settings
-    FormSection:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique section identifier
-        name:
-          type: string
-          description: Section label
-        nodes:
-          type: array
-          description: Node IDs within this section
-          items:
-            type: string
     Form:
       type: object
       properties:
@@ -253,25 +206,72 @@ components:
           description: Conditional logic rules
           items:
             type: object
-  responses:
-    Unauthorized:
-      description: Authentication credentials missing or invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    FormSection:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique section identifier
+        name:
+          type: string
+          description: Section label
+        nodes:
+          type: array
+          description: Node IDs within this section
+          items:
+            type: string
+    CreateFormRequest:
+      type: object
+      required:
+      - name
+      - definition
+      properties:
+        name:
+          type: string
+          description: Form name
+        description:
+          type: string
+          description: Optional form description
+        definition:
+          $ref: '#/components/schemas/FormDefinition'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
+    UpdateFormRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated form name
+        description:
+          type: string
+          description: Updated form description
+        definition:
+          $ref: '#/components/schemas/FormDefinition'
+    FormNode:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique node identifier
+        type:
+          type: string
+          description: Block type identifier (e.g., text, email, yes-no, dropdown)
+        name:
+          type: string
+          description: Node/question label
+        required:
+          type: boolean
+          description: Whether a response is required
+        settings:
+          type: object
+          description: Block-specific configuration settings
   parameters:
     formId:
       name: formId

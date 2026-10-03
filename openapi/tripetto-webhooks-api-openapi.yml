@@ -86,15 +86,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        statusCode:
-          type: integer
     Webhook:
       type: object
       properties:
@@ -116,6 +107,15 @@ components:
         created:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
     CreateWebhookRequest:
       type: object
       required:

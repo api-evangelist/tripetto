@@ -116,15 +116,6 @@ components:
         fingerprint:
           type: string
           description: Respondent fingerprint (anonymized)
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        statusCode:
-          type: integer
     ResponseField:
       type: object
       properties:
@@ -139,6 +130,15 @@ components:
         type:
           type: string
           description: Data type of the response value
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
   parameters:
     formId:
       name: formId
