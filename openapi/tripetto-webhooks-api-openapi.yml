@@ -85,6 +85,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    formId:
+      name: formId
+      in: path
+      required: true
+      description: The unique identifier of the form
+      schema:
+        type: string
   schemas:
     Webhook:
       type: object
@@ -107,15 +115,6 @@ components:
         created:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        statusCode:
-          type: integer
     CreateWebhookRequest:
       type: object
       required:
@@ -129,14 +128,15 @@ components:
           type: boolean
           description: Send raw nested response data structure
           default: false
-  parameters:
-    formId:
-      name: formId
-      in: path
-      required: true
-      description: The unique identifier of the form
-      schema:
-        type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
   responses:
     NotFound:
       description: Resource not found

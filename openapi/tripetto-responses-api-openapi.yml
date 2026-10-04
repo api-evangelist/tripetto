@@ -94,6 +94,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    formId:
+      name: formId
+      in: path
+      required: true
+      description: The unique identifier of the form
+      schema:
+        type: string
   schemas:
     FormResponse:
       type: object
@@ -139,14 +147,6 @@ components:
           type: string
         statusCode:
           type: integer
-  parameters:
-    formId:
-      name: formId
-      in: path
-      required: true
-      description: The unique identifier of the form
-      schema:
-        type: string
   responses:
     NotFound:
       description: Resource not found
