@@ -1,4 +1,4 @@
-# Tripetto (tripetto)
+# Tripetto
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,102 +66,164 @@
 
 Tripetto is a powerful form builder platform and SDK that enables developers to create smart, conversational forms and surveys with advanced conditional logic. The platform provides a JavaScript/TypeScript SDK for embedding form builders and runners into web applications, along with webhook capabilities for delivering form responses to external services and automation platforms.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/tripetto/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/tripetto/refs/heads/main/apis.yml)
+**Areas:** Forms · Surveys · Form Builder · No-Code · SDK · Webhook
 
-## Scope
+## Tripetto on APIs.io
 
-- **Type:** Index
+Everything profiled for Tripetto is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/tripetto/](https://apis.io/providers/tripetto/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Forms
-- Surveys
-- Form Builder
-- No-Code
-- SDK
-- Webhooks
+- [Tripetto Webhooks](https://apis.io/apis/tripetto/tripetto-webhooks/) — Tripetto supports outbound webhooks that deliver form response data to external services and automation platforms including Make, Zapier, and Pabbly…
+- [Tripetto Forms API](https://apis.io/apis/tripetto/tripetto-forms-api/) — Create and manage form definitions
+- [Tripetto Responses API](https://apis.io/apis/tripetto/tripetto-responses-api/) — Access collected form response data
+- [Tripetto Webhooks API](https://apis.io/apis/tripetto/tripetto-webhooks-api/) — Configure outbound webhook integrations
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Tripetto FormBuilder SDK
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Tripetto FormBuilder SDK provides JavaScript and TypeScript APIs for embedding interactive form builders into web applications. Supports React, Angular, and plain JavaScript integration with a rich component model for building, running, and collecting responses from smart conversational forms.
+- [Tripetto Agentic Access](https://apis.io/agentic-access/tripetto/tripetto-agentic-access/)
 
-- **Human URL:** [https://tripetto.com/sdk/](https://tripetto.com/sdk/)
-- **Base URL:** `https://tripetto.com`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Forms
-- SDK
-- JavaScript
-- TypeScript
-- React
-- Angular
+- [Tripetto Form](https://apis.io/schemas/tripetto/tripetto-form/)
+- [Tripetto Form Response](https://apis.io/schemas/tripetto/tripetto-response/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://tripetto.com/sdk/docs/)
-- [Builder  A P I  Reference](https://tripetto.com/sdk/docs/builder/api/)
-- [Getting Started](https://tripetto.com/sdk/docs/builder/introduction/)
-- [npm  Package](https://www.npmjs.com/package/@tripetto/builder)
-- [OpenAPI](openapi/tripetto-form-builder-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/tripetto-form-builder.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tripetto-form-builder.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/tripetto-form-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/tripetto-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
+Data models expressed in JSON Structure.
 
-### Tripetto Webhooks
+- [Tripetto Form Structure](https://apis.io/json-structure/tripetto/tripetto-form-structure/)
 
-Tripetto supports outbound webhooks that deliver form response data to external services and automation platforms including Make, Zapier, and Pabbly Connect. Custom webhook endpoints receive form submission payloads as HTTP POST requests with structured JSON response data.
+#### JSON-LD (1)
 
-- **Human URL:** [https://tripetto.com/help/articles/how-to-automate-a-webhook-to-connect-to-other-services-for-each-new-result/](https://tripetto.com/help/articles/how-to-automate-a-webhook-to-connect-to-other-services-for-each-new-result/)
-- **Base URL:** `https://tripetto.com`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Tripetto Context](https://apis.io/jsonld/tripetto/tripetto-context/)
 
-- Webhooks
-- Automation
-- Forms
-- Integrations
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://tripetto.com/help/articles/how-to-automate-a-webhook-to-connect-to-other-services-for-each-new-result/)
-- [Webhook  Raw  Data](https://tripetto.com/help/articles/use-raw-response-data-in-webhooks/)
-- [Zapier  Integration](https://zapier.com/apps/tripetto/integrations)
-- [Make  Integration](https://www.make.com/en/integrations/tripetto)
-- [Postman Collection](collections/tripetto-form-builder.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tripetto-form-builder.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Tripetto Vocabulary](https://apis.io/vocabularies/tripetto/tripetto-vocabulary/)
 
-## Common Properties
+#### Examples (2)
 
-- [GitHub Organization](https://github.com/tripetto)
-- [LinkedIn](https://www.linkedin.com/company/tripetto)
+Example requests and responses.
+
+- [Tripetto List Form Responses Example](https://apis.io/examples/tripetto/tripetto-list-form-responses-example/)
+- [Tripetto List Forms Example](https://apis.io/examples/tripetto/tripetto-list-forms-example/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Tripetto FormBuilder SDK API](https://apis.io/collections/tripetto/open-tripetto-form-builder/)
+- [Tripetto FormBuilder SDK Forms API](https://apis.io/collections/tripetto/open-tripetto-forms-api/)
+- [Tripetto FormBuilder SDK Forms Responses API](https://apis.io/collections/tripetto/open-tripetto-responses-api/)
+- [Tripetto FormBuilder SDK Forms Webhooks API](https://apis.io/collections/tripetto/open-tripetto-webhooks-api/)
+- [Tripetto FormBuilder SDK Forms API](https://apis.io/collections/tripetto/postman-tripetto-forms-api/)
+- [Tripetto FormBuilder SDK Forms Responses API](https://apis.io/collections/tripetto/postman-tripetto-responses-api/)
+- [Tripetto FormBuilder SDK Forms Webhooks API](https://apis.io/collections/tripetto/postman-tripetto-webhooks-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Tripetto — jsonschema rules](https://apis.io/rules/tripetto/tripetto-jsonschema-spectral-rules/)
+- [Tripetto API Rules](https://apis.io/rules/tripetto/tripetto-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Tripetto Authentication](https://apis.io/security/tripetto/tripetto-authentication/)
+- [Tripetto Domain Security](https://apis.io/security/tripetto/tripetto-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Tripetto Plans Pricing](https://apis.io/plans/tripetto/tripetto-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Tripetto Rate Limits](https://apis.io/rate-limits/tripetto/tripetto-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Tripetto Finops](https://apis.io/finops/tripetto/tripetto-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://tripetto.com/)
 - [Documentation](https://tripetto.com/sdk/docs/)
-- [Help  Center](https://tripetto.com/help/)
-- [Tutorials](https://tripetto.com/tutorials/)
 - [Pricing](https://tripetto.com/pricing/)
-- [GitHub Organization](https://gitlab.com/tripetto)
-- [npm  Organization](https://www.npmjs.com/org/tripetto)
-- [Login](https://tripetto.com/app/sign-in/)
-- [Sign Up](https://tripetto.com/app/sign-up/)
-- [OpenAPI](openapi/tripetto-form-builder-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](json-schema/tripetto-form-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/tripetto-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N  Structure](json-structure/tripetto-form-structure.json)
-- [JSON-LD](json-ld/tripetto-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral  Rules](rules/tripetto-rules.yml)
-- [Vocabulary](vocabulary/tripetto-vocabulary.yml)
-- [x-profiled](2026-05)
+- [Blog](https://tripetto.com/blog/)
+- [GitHub](https://github.com/tripetto)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 38.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 65.0 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 41.7 |
+| Access clarity | 19.7 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/tripetto/](https://apis.io/providers/tripetto/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Tripetto: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/tripetto/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
